@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { Suspense } from 'react'
+import { Canvas } from '@react-three/fiber'
+import { ContactShadows, OrbitControls, Stage } from '@react-three/drei'
+import Test3D from './Test3D.js'
+import Three from './component/three'
+import "./App.css";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <Canvas id="canvas" performance={{ min: 0.5 }} >
 
-export default App;
+      <Suspense fallback={null}>
+        {/* <Stage>
+          <ContactShadows opacity={1} scale={10} blur={1} far={10} resolution={256} color="#a2a2a2" />
+          <Test3D position={[0, 0, -2]} />
+        </Stage> */}
+        <Three />
+      </Suspense>
+
+    </Canvas>
+  )
+}
